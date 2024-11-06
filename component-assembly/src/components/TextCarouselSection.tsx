@@ -4,10 +4,10 @@ const TextCarouselSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const carouselWords = [
+    'MOTION',
+    'UI/UX DESIGN',
     'WEBSITES',
     'PRODUCTS',
-    'UI/UX DESIGN',
-    'MOTION',
     'WEB APPS',
     'MOBILE APPS'
   ];
@@ -22,31 +22,29 @@ const TextCarouselSection = () => {
   return (
     <section className="hero-section">
       <div className="container">
-        <div className="two-column-grid">
-          {/* Left Column */}
-          <div className="content-column">
-            <p className="hero-text">
-              We specialize in creating emotional, animated interfaces and wow websites that make complex SaaS products more human and appealing to use while ensuring great UX.
-            </p>
-          </div>
+        {/* Left Column - Text */}
+        <div className="content-column">
+          <p className="hero-text">
+            We specialize in creating emotional, animated interfaces and wow websites that make complex SaaS products more human and appealing to use while ensuring great UX.
+          </p>
+        </div>
 
-          {/* Right Column */}
-          <div className="title-column">
-            <div className="title-wrapper">
-              <div className="title-header">
-                <span className="section-tag">WE DO</span>
-                <span className="static-title">IMMERSIVE</span>
-              </div>
-              <div className="carousel-wrapper">
-                {carouselWords.map((word, index) => (
-                  <div
-                    key={index}
-                    className={`carousel-item ${index === currentIndex ? 'active' : ''}`}
-                  >
-                    {word}
-                  </div>
-                ))}
-              </div>
+        {/* Right Column - Titles */}
+        <div className="title-column">
+          <div className="titles-wrapper">
+            <div className="static-row">
+              <span className="tag">WE DO</span>
+              <h1 className="immersive">IMMERSIVE</h1>
+            </div>
+            <div className="carousel-wrapper">
+              {carouselWords.map((word, index) => (
+                <div
+                  key={index}
+                  className={`carousel-word ${index === currentIndex ? 'active' : ''}`}
+                >
+                  {word}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -63,114 +61,134 @@ style.textContent = `
     min-height: 100vh;
     background-color: #000;
     color: #fff;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
+    padding: 120px 32px;
   }
 
   .container {
     width: 100%;
     max-width: 1920px;
     margin: 0 auto;
-  }
-
-  .two-column-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
     gap: 80px;
-    align-items: center;
   }
 
   .content-column {
-    max-width: 500px;
+    grid-column: 1 / 2;
   }
 
   .hero-text {
     font-size: 32px;
     line-height: 1.2;
     font-weight: 400;
-    margin: 0;
     color: #fff;
+    margin: 0;
     font-family: Matter, ui-sans-serif, system-ui;
   }
 
   .title-column {
-    justify-self: end;
+    grid-column: 2 / 3;
   }
 
-  .title-wrapper {
+  .titles-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
 
-  .title-header {
+  .static-row {
     display: flex;
     align-items: baseline;
-    gap: 24px;
-    margin-bottom: -16px;
+    gap: 120px;
+    margin-bottom: 16px;
   }
 
-  .section-tag {
-    font-size: clamp(24px, 2vw, 32px);
+  .tag {
+    font-size: 32px;
+    color: #fff;
     font-weight: 400;
-    color: #9d9c9a;
     font-family: Matter, ui-sans-serif, system-ui;
+    white-space: nowrap;
   }
 
-  .static-title {
-    font-size: clamp(64px, 8vw, 120px);
-    font-weight: 500;
+  .immersive {
+    font-size: 120px;
     color: #9d9c9a;
+    font-weight: 500;
+    margin: 0;
+    line-height: 0.9;
     letter-spacing: -0.02em;
     font-family: Matter, ui-sans-serif, system-ui;
-    line-height: 0.9;
+    text-align: left;
   }
 
   .carousel-wrapper {
     position: relative;
     height: 140px;
-    overflow: hidden;
+    text-align: left;
+    margin-left: 152px;
   }
 
-  .carousel-item {
+  .carousel-word {
     position: absolute;
     width: 100%;
-    font-size: clamp(64px, 8vw, 120px);
+    font-size: 120px;
     font-weight: 500;
     color: #fff;
+    margin: 0;
+    line-height: 0.9;
     letter-spacing: -0.02em;
     font-family: Matter, ui-sans-serif, system-ui;
-    line-height: 0.9;
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    text-align: left;
   }
 
-  .carousel-item.active {
+  .carousel-word.active {
     opacity: 1;
     transform: translateY(0);
   }
 
-  @media (max-width: 1024px) {
-    .two-column-grid {
-      grid-template-columns: 1fr;
+  @media (max-width: 1400px) {
+    .container {
       gap: 40px;
     }
+    .immersive,
+    .carousel-word {
+      font-size: 80px;
+    }
+    .static-row {
+      gap: 80px;
+    }
+    .carousel-wrapper {
+      margin-left: 112px;
+    }
+  }
 
+  @media (max-width: 1024px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
     .content-column,
     .title-column {
-      justify-self: start;
+      grid-column: 1 / -1;
     }
-
     .hero-text {
       font-size: 24px;
+      max-width: 560px;
     }
-
-    .title-header {
+    .static-row {
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 0;
+      gap: 40px;
+    }
+    .immersive,
+    .carousel-word {
+      font-size: 64px;
+    }
+    .carousel-wrapper {
+      margin-left: 0;
     }
   }
 `;
