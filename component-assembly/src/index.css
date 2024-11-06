@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font--base: 70px;
+  --spacing-4xl: 8em;
+  --navy-blue: #0a0a12;
+  --separator-color: rgba(128, 128, 128, 0.2);
+}
+
+@layer components {
+  .fh-section--banners {
+    @apply w-full relative flex flex-col my-[8em] gap-[0.5px] bg-[var(--separator-color)];
+  }
+
+  .fh-section--banners * {
+    @apply font-sans antialiased;
+  }
+
+  .fh-section--banners-banner {
+    @apply relative overflow-hidden h-[160px] bg-[var(--navy-blue)] transition-colors duration-300;
+  }
+}
