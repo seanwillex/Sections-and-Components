@@ -136,14 +136,14 @@ style.textContent = `
     --spacing-4xl: 8em;
     --navy-blue: #0a0a12;
     --separator-color: rgba(128, 128, 128, 0.2);
-    --animation-duration: 1.2s;
+    --animation-duration: 1.0s;
     --bezier-smooth: cubic-bezier(0.55, 0, 0.29, 1);
   }
 
   .fh-section--banners-banner {
     position: relative;
     overflow: hidden;
-    height: 180px;
+    height: 135px;
     background-color: var(--navy-blue);
   }
 
@@ -251,10 +251,19 @@ style.textContent = `
     font-weight: normal;
     margin: 0;
     text-align: left;
+    transition: color var(--animation-duration) var(--bezier-smooth);
   }
 
   .service-banner-text h2 {
     padding-left: 0;
+  }
+
+  .fh-section--banners-banner:hover .fh-item--banner__marquee h2 {
+    color: var(--navy-blue);
+  }
+
+  .fh-section--banners-banner:hover h2 {
+    color: var(--navy-blue);
   }
 `;
 document.head.appendChild(style);
