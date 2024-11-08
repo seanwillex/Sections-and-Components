@@ -4,12 +4,12 @@ const TextCarouselSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const carouselWords = [
-    'MOTION',
-    'UI/UX DESIGN',
     'WEBSITES',
-    'PRODUCTS',
+    'UI/UX DESIGN',
+    'MOTION',
     'WEB APPS',
-    'MOBILE APPS'
+    'MOBILE APPS',
+    'PRODUCTS'
   ];
 
   useEffect(() => {
@@ -22,30 +22,28 @@ const TextCarouselSection = () => {
   return (
     <section className="hero-section">
       <div className="container">
-        {/* Left Column - Text */}
-        <div className="content-column">
-          <p className="hero-text">
-            We specialize in creating emotional, animated interfaces and wow websites that make complex SaaS products more human and appealing to use while ensuring great UX.
+        <div className="left-content">
+          <p className="description">
+            We specialize in creating emotional, animated interfaces and wow websites 
+            that make complex SaaS products more human and appealing to use while 
+            ensuring great UX.
           </p>
         </div>
-
-        {/* Right Column - Titles */}
-        <div className="title-column">
-          <div className="titles-wrapper">
-            <div className="static-row">
-              <span className="tag">WE DO</span>
-              <h1 className="immersive">IMMERSIVE</h1>
-            </div>
-            <div className="carousel-wrapper">
-              {carouselWords.map((word, index) => (
-                <div
-                  key={index}
-                  className={`carousel-word ${index === currentIndex ? 'active' : ''}`}
-                >
-                  {word}
-                </div>
-              ))}
-            </div>
+        
+        <div className="right-content">
+          <div className="top-line">
+            <span className="tag-we-do">WE DO</span>
+            <span className="text-immersive">IMMERSIVE</span>
+          </div>
+          <div className="bottom-line">
+            {carouselWords.map((word, index) => (
+              <div 
+                key={index}
+                className={`carousel-word ${index === currentIndex ? 'active' : ''}`}
+              >
+                {word}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -60,90 +58,102 @@ style.textContent = `
     width: 100%;
     min-height: 100vh;
     background-color: #000;
-    color: #fff;
-    padding: 120px 32px;
+    display: flex;
+    align-items: center;
+    padding: 120px 0;
+    overflow: hidden;
   }
 
   .container {
     width: 100%;
     max-width: 1920px;
     margin: 0 auto;
+    padding: 0 32px;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    grid-template-columns: 1fr 2fr;
     gap: 80px;
   }
 
-  .content-column {
+  .left-content {
     grid-column: 1 / 2;
+    align-self: start;
+    padding-top: 20px;
   }
 
-  .hero-text {
-    font-size: 32px;
+  .description {
+    font-size: clamp(24px, 2vw, 32px);
     line-height: 1.2;
-    font-weight: 400;
     color: #fff;
     margin: 0;
+    max-width: 560px;
     font-family: Matter, ui-sans-serif, system-ui;
+    font-weight: 400;
   }
 
-  .title-column {
+  .right-content {
     grid-column: 2 / 3;
-  }
-
-  .titles-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0;
+    align-items: flex-end;
   }
 
-  .static-row {
+  .top-line {
     display: flex;
-    align-items: baseline;
-    gap: 120px;
-    margin-bottom: 16px;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: -20px;
+    width: 100%;
+    justify-content: flex-end;
+    position: relative;
   }
 
-  .tag {
-    font-size: 32px;
+  .tag-we-do {
+    font-size: clamp(24px, 2vw, 32px);
     color: #fff;
-    font-weight: 400;
     font-family: Matter, ui-sans-serif, system-ui;
+    font-weight: 400;
+    position: absolute;
+    right: calc(100% - 32px);
+    bottom: calc(100% - 24px);
+    transform: none;
     white-space: nowrap;
   }
 
-  .immersive {
-    font-size: 120px;
+  .text-immersive {
+    font-size: clamp(64px, 8vw, 120px);
     color: #9d9c9a;
+    font-family: Matter, ui-sans-serif, system-ui;
     font-weight: 500;
-    margin: 0;
     line-height: 0.9;
     letter-spacing: -0.02em;
-    font-family: Matter, ui-sans-serif, system-ui;
-    text-align: left;
+    text-align: right;
+    margin-left: auto;
   }
 
-  .carousel-wrapper {
+  .bottom-line {
     position: relative;
-    height: 140px;
-    text-align: left;
-    margin-left: 152px;
+    height: 120px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: right;
   }
 
   .carousel-word {
     position: absolute;
+    top: 0;
+    right: 0;
     width: 100%;
-    font-size: 120px;
-    font-weight: 500;
+    font-size: clamp(64px, 8vw, 120px);
     color: #fff;
-    margin: 0;
+    font-family: Matter, ui-sans-serif, system-ui;
+    font-weight: 500;
     line-height: 0.9;
     letter-spacing: -0.02em;
-    font-family: Matter, ui-sans-serif, system-ui;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
-    text-align: left;
+    text-align: right;
   }
 
   .carousel-word.active {
@@ -151,44 +161,51 @@ style.textContent = `
     transform: translateY(0);
   }
 
-  @media (max-width: 1400px) {
-    .container {
-      gap: 40px;
-    }
-    .immersive,
-    .carousel-word {
-      font-size: 80px;
-    }
-    .static-row {
-      gap: 80px;
-    }
-    .carousel-wrapper {
-      margin-left: 112px;
-    }
-  }
-
   @media (max-width: 1024px) {
     .container {
       grid-template-columns: 1fr;
-    }
-    .content-column,
-    .title-column {
-      grid-column: 1 / -1;
-    }
-    .hero-text {
-      font-size: 24px;
-      max-width: 560px;
-    }
-    .static-row {
-      flex-direction: column;
       gap: 40px;
     }
-    .immersive,
+
+    .left-content,
+    .right-content {
+      grid-column: 1 / -1;
+    }
+
+    .description {
+      font-size: 24px;
+    }
+
+    .top-line {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .tag-we-do {
+      position: static;
+      right: auto;
+      bottom: auto;
+      transform: none;
+    }
+
+    .text-immersive,
     .carousel-word {
       font-size: 64px;
     }
-    .carousel-wrapper {
-      margin-left: 0;
+
+    .right-content,
+    .top-line,
+    .bottom-line,
+    .carousel-word {
+      text-align: left;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .carousel-word {
+      left: 0;
+      right: auto;
     }
   }
 `;
