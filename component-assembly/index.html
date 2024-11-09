@@ -10,5 +10,13 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Check for dark mode preference
+      if (localStorage.getItem('darkMode') === 'true' || 
+          (!('darkMode' in localStorage) && 
+           window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </body>
 </html>
